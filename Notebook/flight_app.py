@@ -154,8 +154,8 @@ if st.button('Predict Price'):
         st.success(f"Predicted Flight Price is: {round(prediction[0])} INR")
 
     except Exception as e:
-
-        st.error(f"Please enter all the valid details")
+      #st.error(f"Please enter all the valid details")
+      st.error(f"{e}"}
 
 
 
