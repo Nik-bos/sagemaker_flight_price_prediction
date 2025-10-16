@@ -124,7 +124,7 @@ convert = {
     'dep_time': str,
     'arrival_time': str
 }
-st.dataframe(user_input.astype(convert)
+st.dataframe(user_input.astype(convert))
 
 st.write(user_input.dtypes)
 
@@ -154,6 +154,7 @@ if st.button('Predict Price'):
     except Exception as e:
 
         st.error(f"Please enter all the valid details")
+
 
 
 
