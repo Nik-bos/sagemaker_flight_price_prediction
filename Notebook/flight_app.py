@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
 import sklearn
-from IPython.display import display
-
 
 from sklearn.preprocessing import FunctionTransformer
 from sklearn.impute import SimpleImputer
@@ -37,12 +35,6 @@ import streamlit as st
 st.set_page_config(page_title = "Flight Price Prediction",
                     layout = "wide",
                     page_icon = "✈️")
-
-# -----------------------------------------------------------------------------------------------------------------------------------
-import sys
-st.write(sys.executable)
-
-
 
 # -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -143,4 +135,5 @@ if st.button('Predict Price'):
     except Exception as e:
 
         st.error(f"Please enter all the valid details")
+
 
