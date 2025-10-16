@@ -116,14 +116,15 @@ data = (
 
 # type = {'date_of_journey': str, 'dep_time': str, 'arrival_time': str}
 user_input = pd.DataFrame(data)   # .astype(type)
-st.dataframe(user_input.astype({
+convert = {
     'airline': str,
     'date_of_journey': str,
     'source': str,
     'destination': str,
     'dep_time': str,
     'arrival_time': str
-})))
+}
+st.dataframe(user_input.astype(convert)
 
 st.write(user_input.dtypes)
 
