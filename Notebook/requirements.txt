@@ -5,3 +5,5 @@ feature-engine
 streamlit
 xgboost
 joblib
+IPython
+
