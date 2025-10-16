@@ -125,7 +125,7 @@ if st.button('Predict Price'):
 
         # loading preprocessor and preprocessing the user_input data
         import cloudpickle
-        with open("flights_final_pipeline.pkl", 'rb') as f:
+        with open("flights_preprocessor.pkl", 'rb') as f:
             final_pipeline = cloudpickle.load(f)
 
         preprocessed_data = final_pipeline.transform(user_input)
@@ -141,4 +141,5 @@ if st.button('Predict Price'):
         st.success(f"Predicted Flight Price is: {round(prediction[0])} INR")
 
     except Exception as e:
+
         st.error(f"Please enter all the valid details")
