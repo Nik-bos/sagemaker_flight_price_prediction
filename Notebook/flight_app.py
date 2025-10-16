@@ -104,11 +104,11 @@ with col7:
 data = (
     {
         'airline': [airline],
-        'date_of_journey': [doj_str],
+        'date_of_journey': [doj],
         'source': [source],
         'destination': [destination],
-        'dep_time': [dep_time_str],
-        'arrival_time': [arrival_time_str],
+        'dep_time': [dep_time],
+        'arrival_time': [arrival_time],
         'duration': [duration],
         'total_stops': [total_stops]
     }
@@ -154,6 +154,7 @@ if st.button('Predict Price'):
     except Exception as e:
 
         st.error(f"Please enter all the valid details")
+
 
 
 
