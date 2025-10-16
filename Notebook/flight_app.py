@@ -114,8 +114,10 @@ data = (
     }
 )
 
-# type = {'date_of_journey': str, 'dep_time': str, 'arrival_time': str}
-user_input = pd.DataFrame(data)   # .astype(type)
+type = {'date_of_journey': str, 'dep_time': str, 'arrival_time': str}
+user_input = pd.DataFrame(data).astype(type)
+
+'''
 convert = {
     'airline': str,
     'date_of_journey': str,
@@ -127,7 +129,7 @@ convert = {
 st.dataframe(user_input.astype(convert))
 
 st.write(user_input.dtypes)
-
+'''
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 if st.button('Predict Price'):
@@ -154,6 +156,7 @@ if st.button('Predict Price'):
     except Exception as e:
 
         st.error(f"Please enter all the valid details")
+
 
 
 
