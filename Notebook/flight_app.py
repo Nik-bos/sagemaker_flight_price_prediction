@@ -97,17 +97,23 @@ with col7:
         value = None,
         step = 1,
         placeholder = 'Enter Total Stops')
+
+# Convert date and time inputs to strings
+doj_str = doj.strftime("%Y-%m-%d")          # datetime.date -> string
+dep_time_str = dep_time.strftime("%H:%M:%S")   # datetime.time -> string
+arrival_time_str = arrival_time.strftime("%H:%M:%S")
+
     
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 data = (
     {
         'airline': [airline],
-        'date_of_journey': [doj],
+        'date_of_journey': [doj_str],
         'source': [source],
         'destination': [destination],
-        'dep_time': [dep_time],
-        'arrival_time': [arrival_time],
+        'dep_time': [dep_time_str],
+        'arrival_time': [arrival_time_str],
         'duration': [duration],
         'total_stops': [total_stops]
     }
@@ -144,6 +150,7 @@ if st.button('Predict Price'):
     except Exception as e:
 
         st.error(f"Please enter all the valid details")
+
 
 
 
