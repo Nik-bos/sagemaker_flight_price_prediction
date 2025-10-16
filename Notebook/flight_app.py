@@ -109,31 +109,32 @@ type = {'date_of_journey': str, 'dep_time': str, 'arrival_time': str}
 user_input = pd.DataFrame(data).astype(type)
 st.dataframe(user_input)
 
+st.write(user_input.dtypes)
+st.write(user_input)
+
+
 # -----------------------------------------------------------------------------------------------------------------------------------
 
 if st.button('Predict Price'):
-
-    try:
-
-        # loading preprocessor and preprocessing the user_input data
-        import cloudpickle
-        with open("flights_preprocessor.pkl", 'rb') as f:
-            final_pipeline = cloudpickle.load(f)
-
-        preprocessed_data = final_pipeline.transform(user_input)
-
-        # loading model and predicting the price
-        with open("xgboost-flight-price-model", 'rb') as f:
-            model = joblib.load(f)
+  try:
+    # loading preprocessor and preprocessing the user_input data
+    import cloudpickle
+    with open("flights_preprocessor.pkl", 'rb') as f:
+      final_pipeline = cloudpickle.load(f)
+      preprocessed_data = final_pipeline.transform(user_input)
+      
+      # loading model and predicting the price
+      with open("xgboost-flight-price-model", 'rb') as f:
+        model = joblib.load(f)
         
         # Converting to Dmatrix
         dmatrix = xgboost.DMatrix(preprocessed_data)
         prediction = model.predict(dmatrix)
-
+        
         st.success(f"Predicted Flight Price is: {round(prediction[0])} INR")
 
     except Exception as e:
+      st.error(f"Please enter all the valid details")
 
-        st.error(f"Please enter all the valid details")
 
 
