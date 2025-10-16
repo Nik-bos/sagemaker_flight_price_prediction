@@ -98,11 +98,6 @@ with col7:
         step = 1,
         placeholder = 'Enter Total Stops')
 
-# Convert date and time inputs to strings
-doj_str = doj.strftime("%Y-%m-%d")          # datetime.date -> string
-dep_time_str = dep_time.strftime("%H:%M:%S")   # datetime.time -> string
-arrival_time_str = arrival_time.strftime("%H:%M:%S")
-
     
 # -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -121,7 +116,15 @@ data = (
 
 # type = {'date_of_journey': str, 'dep_time': str, 'arrival_time': str}
 user_input = pd.DataFrame(data)   # .astype(type)
-st.dataframe(user_input)
+st.dataframe(user_input.astype({
+    'airline': str,
+    'date_of_journey': str,
+    'source': str,
+    'destination': str,
+    'dep_time': str,
+    'arrival_time': str
+})))
+
 st.write(user_input.dtypes)
 
 # -----------------------------------------------------------------------------------------------------------------------------------
@@ -150,6 +153,7 @@ if st.button('Predict Price'):
     except Exception as e:
 
         st.error(f"Please enter all the valid details")
+
 
 
 
