@@ -138,7 +138,7 @@ if st.button('Predict Price'):
 
         # loading preprocessor and preprocessing the user_input data
         import cloudpickle
-        with open("flights_preprocessor.pkl", 'rb') as f:
+        with open("Notebook/flights_preprocessor.pkl", 'rb') as f:
             preprocessor = cloudpickle.load(f)
 
         preprocessed_data = preprocessor.transform(user_input)
@@ -156,6 +156,7 @@ if st.button('Predict Price'):
     except Exception as e:
       #st.error(f"Please enter all the valid details")
       st.error(f"{e}")
+
 
 
 
