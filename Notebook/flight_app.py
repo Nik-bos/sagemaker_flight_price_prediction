@@ -143,5 +143,6 @@ if st.button('Predict Price'):
 
     except Exception as e:
 
-        st.error(f"Please enter all the valid details")
+        st.error(f"{e}")
+
 
