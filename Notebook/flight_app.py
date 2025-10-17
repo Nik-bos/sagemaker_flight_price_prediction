@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import sklearn
-from IPython.display import display
+# from IPython.display import display
 
 
 from sklearn.preprocessing import FunctionTransformer
@@ -144,3 +144,4 @@ if st.button('Predict Price'):
     except Exception as e:
 
         st.error(f"Please enter all the valid details")
+
