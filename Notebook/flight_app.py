@@ -34,19 +34,6 @@ sklearn.set_config(transform_output = 'pandas') # To display sklearn outputs as 
 path = r"Datasets/train_data.csv"
 df = pd.read_csv(path)
 
-# -----------------------------------------------------------------------------------------------------------------------------------
-# Load the model once at startup
-if "preprocessor" not in st.session_state:
-    with open("Notebook/flights_preprocessor.pkl", "rb") as f:
-        st.session_state.preprocessor = cloudpickle.load(f)
-
-# Load model at startup (once)
-if "model" not in st.session_state:
-    model = xgboost.Booster()
-    model.load_model("Notebook/xgboost-flight-price-model")
-    st.session_state.model = model
-
-
 
 # -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -143,17 +130,16 @@ if st.button('Predict Price'):
     try:
 
         # loading preprocessor and preprocessing the user_input data
-        # with open("Notebook/flights_preprocessor.pkl", 'rb') as f:
-            # preprocessor = cloudpickle.load(f)
-        preprocessor = st.session_state.preprocessor
-        model = st.session_state.model
+        with open("Notebook/flights_preprocessor.pkl", 'rb') as f:
+            preprocessor = cloudpickle.load(f)
+       
 
 
         preprocessed_data = preprocessor.transform(user_input)
 
         # loading model and predicting the price
-        # with open("xgboost-flight-price-model", 'rb') as f:
-        #    model = joblib.load(f)
+        with open("xgboost-flight-price-model", 'rb') as f:
+            model = joblib.load(f)
 
         
         # Converting to Dmatrix
