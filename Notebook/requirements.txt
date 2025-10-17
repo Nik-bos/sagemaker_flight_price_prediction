@@ -1,9 +1,10 @@
-pandas==2.3.3
-numpy==2.3.3
-scikit-learn==1.7.2
-feature-engine==1.9.3
-streamlit==1.44.1
-xgboost==3.0.0
-joblib==1.3.2
-cloudpickle==3.1.1
+pandas
+numpy
+scikit-learn
+feature-engine
+streamlit
+xgboost
+joblib
+cloudpickle
+
 
