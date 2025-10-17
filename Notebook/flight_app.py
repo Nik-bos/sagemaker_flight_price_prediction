@@ -28,7 +28,7 @@ pd.set_option("display.max_columns", None)
 sklearn.set_config(transform_output = 'pandas') # To display sklearn outputs as pandas DataFrames
 
 # Reading any one dataset
-path = r"D:\Nikss\Projects\Flight Price Prediction\Datasets\train_data.csv"
+path = r"Datasets/train_data.csv"
 df = pd.read_csv(path)
 
 # For Web Application
@@ -142,4 +142,5 @@ if st.button('Predict Price'):
         st.success(f"Predicted Flight Price is: {round(prediction[0])} INR")
 
     except Exception as e:
+
         st.error(f"Please enter all the valid details")
