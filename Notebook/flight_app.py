@@ -37,7 +37,7 @@ df = pd.read_csv(path)
 # -----------------------------------------------------------------------------------------------------------------------------------
 # Load the model once at startup
 if "preprocessor" not in st.session_state:
-    with open("Notebook/preprocessor.pkl", "rb") as f:
+    with open("Notebook/flights_preprocessor.pkl", "rb") as f:
         st.session_state.preprocessor = cloudpickle.load(f)
 
 # Load model at startup (once)
@@ -164,6 +164,7 @@ if st.button('Predict Price'):
     except Exception as e:
 
         st.error(f"{e}")
+
 
 
 
