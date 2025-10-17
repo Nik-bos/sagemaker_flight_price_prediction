@@ -42,8 +42,9 @@ if "preprocessor" not in st.session_state:
 
 # Load model at startup (once)
 if "model" not in st.session_state:
-    with open("Notebook/xgboost-flight-price-model.pkl", 'rb') as f:
-        st.session_state.model = joblib.load(f)
+    model = xgboost.Booster()
+    model.load_model("Notebook/xgboost-flight-price-model")
+    st.session_state.model = model
 
 
 
@@ -164,6 +165,7 @@ if st.button('Predict Price'):
     except Exception as e:
 
         st.error(f"{e}")
+
 
 
 
