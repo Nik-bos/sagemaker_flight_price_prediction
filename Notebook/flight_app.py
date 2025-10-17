@@ -3,6 +3,9 @@ import numpy as np
 import sklearn
 # from IPython.display import display
 
+import cloudpickle
+import streamlit as st
+
 
 from sklearn.preprocessing import FunctionTransformer
 from sklearn.impute import SimpleImputer
@@ -31,9 +34,23 @@ sklearn.set_config(transform_output = 'pandas') # To display sklearn outputs as 
 path = r"Datasets/train_data.csv"
 df = pd.read_csv(path)
 
-# For Web Application
-import streamlit as st
+# -----------------------------------------------------------------------------------------------------------------------------------
+# Load the model once at startup
+if "preprocessor" not in st.session_state:
+    with open("Notebook/preprocessor.pkl", "rb") as f:
+        st.session_state.preprocessor = cloudpickle.load(f)
 
+# Load model at startup (once)
+if "model" not in st.session_state:
+    with open("Notebook/xgboost-flight-price-model", 'rb') as f:
+        st.session_state.model = joblib.load(f)
+
+
+
+# -----------------------------------------------------------------------------------------------------------------------------------
+
+
+# For Web Application
 st.set_page_config(page_title = "Flight Price Prediction",
                     layout = "wide",
                     page_icon = "✈️")
@@ -125,15 +142,18 @@ if st.button('Predict Price'):
     try:
 
         # loading preprocessor and preprocessing the user_input data
-        import cloudpickle
-        with open("Notebook/flights_preprocessor.pkl", 'rb') as f:
-            preprocessor = cloudpickle.load(f)
+        # with open("Notebook/flights_preprocessor.pkl", 'rb') as f:
+            # preprocessor = cloudpickle.load(f)
+        preprocessor = st.session_state.preprocessor
+        model = st.session_state.model
+
 
         preprocessed_data = preprocessor.transform(user_input)
 
         # loading model and predicting the price
-        with open("xgboost-flight-price-model", 'rb') as f:
-            model = joblib.load(f)
+        # with open("xgboost-flight-price-model", 'rb') as f:
+        #    model = joblib.load(f)
+
         
         # Converting to Dmatrix
         dmatrix = xgboost.DMatrix(preprocessed_data)
@@ -144,6 +164,7 @@ if st.button('Predict Price'):
     except Exception as e:
 
         st.error(f"{e}")
+
 
 
 
